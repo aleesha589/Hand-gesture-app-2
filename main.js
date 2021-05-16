@@ -15,7 +15,7 @@ function takepic() {
     });
 }
 console.log('ml5 version:', ml5.version);
-classifier = ml5.imageclassifier('model.json', modelloaded);
+classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/y60h5JbU6/model.json', modelloaded);
 
 function modelloaded() {
     console.log("Model Loaded Succesfully!");
@@ -23,8 +23,7 @@ function modelloaded() {
 
 function speak() {
     var synth = window.speechSynthesis;
-    speak_data1 = "the first prediction is " + p1;
-    speak_data2 = "and the second prediction is " + p2;
+    speak_data = "the first prediction is " + p1;
     var utter = new SpeechSynthesisUtterance(speak_data1 + speak_data2);
     synth.speak(utter);
 }
@@ -48,16 +47,17 @@ function gotResult(error, results) {
         toSpeak = "";
 
         if (gesture == "point up") {
-            toSpeak = "pointing your finger up";
+            p1 = "pointing your finger up";
             document.getElementById("emoji_icon").innerHTML = "&#128070;";
         } else if (gesture == "yo") {
-            toSpeak = "let's rock";
+            p1 = "let's rock";
             document.getElementById("emoji_icon").innerHTML = "&#129304;";
         } else if (gesture == "stop") {
-            toSpeak = "stop right there";
+            p1 = "stop right there";
             document.getElementById("emoji_icon").innerHTML = "&#9995;";
         }
 
         speak();
+       
     }
 }
